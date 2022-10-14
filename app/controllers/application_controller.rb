@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::API
+
+
+    
     def secret
-        'word'
+        'jwt'
     end
 
     def encode(user_id)

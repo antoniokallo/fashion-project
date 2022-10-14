@@ -15,22 +15,23 @@ class UsersController < ApplicationController
   
     # LOGIN
     def login
-      user = User.find_by(username: params[:username], name: params[:name]).try(:authenticate, params[:password])
-  
-      if user 
-        token = encode(user.id)
-        
-        render json: {user: user, token: token}
-      else
-        render json: { message: 'wrong'}
+        user = User.find_by(username: params[:username]).try(:authenticate, params[:password])
+    
+        if user 
+          token = encode(user.id)
+          
+          render json: {user: user, token: token}
+        else
+          render json: { message: 'wrong'}
+        end
+        # render json: user
       end
-      # render json: user
-    end
   
     # get profile
     def me
       token = request.headers['token']
       user_id =   decode(token)
+      puts user_id
       user = User.find(user_id)
       render json: user
     end
@@ -59,6 +60,7 @@ class UsersController < ApplicationController
       # Use callbacks to share common setup or constraints between actions.
       def set_user
         @user = User.find(params[:id])
+        
       end
   
       # Only allow a list of trusted parameters through.

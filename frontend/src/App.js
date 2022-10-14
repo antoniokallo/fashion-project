@@ -19,23 +19,23 @@ function App() {
   let [user, setUser] = useState({ username: '' })
 
  /*****auto login******/
-  useEffect(() => {
-    let token = localStorage.getItem('token')
-    if(token && !user.username){
-      fetch('http://localhost:3000/me', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        if(data.user){
-          setUser(data.user)
-        }
-      })
-    }
-  }, [])
+  // useEffect(() => {
+  //   let token = localStorage.getItem('token')
+  //   if(token && !user.username){
+  //     fetch('http://localhost:3000/me', {
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`
+  //       }
+  //     })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data)
+  //       if(data.user){
+  //         setUser(data.user)
+  //       }
+  //     })
+  //   }
+  // }, [])
  /*****logout user******/
   const logout = () => {
     setUser({username: ''})
@@ -52,18 +52,21 @@ function App() {
   }
 
   /*****login******/
+
+ 
   const loginSubmit = (e) => {
+    console.log(loginData)
     e.preventDefault()
     fetch('http://localhost:3000/login', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
-        
       },
       body: JSON.stringify(loginData)
     })
     .then(res => res.json())
     .then(data => {
+      console.log(data)
       //set user
       //set token
       setUser(data.user)
@@ -99,14 +102,14 @@ function App() {
 
   let clearStorage = (e) => {
     if (e)
-    Storage.clear()
+    localStorage.clear()
 
   }
 
   //RENDER 
   return (
     <div className="App">
-      { user.username.length === 0 ? 
+      { user.username?.length === 0 ? 
         <div>
           <h1>Login</h1>
           <form onChange={e => loginChange(e)} onSubmit={e => loginSubmit(e)}>
