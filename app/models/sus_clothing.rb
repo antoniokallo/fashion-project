@@ -1,0 +1,2 @@
+class SusClothing < ApplicationRecord
+end

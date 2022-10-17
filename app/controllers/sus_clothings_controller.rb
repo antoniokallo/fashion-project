@@ -1,0 +1,2 @@
+class SusClothingsController < ApplicationController
+end

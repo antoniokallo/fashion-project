@@ -1,14 +1,17 @@
 import React from 'react'
+import './Homepage.css'
 
 export default function Homepage() {
   return (
-    <div>
+    <div className='nav'>
         <nav>
-           <button>about</button> 
-           <button>closet</button> 
-           <button>brands</button> 
-           <button>clothing</button> 
+           <button  className='navButton'>closet</button> 
+           <button  className='navButton'>brands</button> 
+           <button  className='navButton'>clothing</button> 
+           <button className='navButton'>about</button> 
+
         </nav>
+        {/* <h1 style={{}} > - </h1> */}
     </div>
   )
 }

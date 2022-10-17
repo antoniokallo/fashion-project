@@ -1,5 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import LoginForm from './LoginForm';
+import Homepage from './Homepage';
 
 function App() {
   const loginBody = {
@@ -100,40 +102,43 @@ function App() {
     .catch(err => console.log(err))
   }
 
-  let clearStorage = (e) => {
-    if (e)
-    localStorage.clear()
+  // let clearStorage = (e) => {
+  //   if (e)
+  //   localStorage.clear()
 
-  }
+  // }
 
   //RENDER 
   return (
+    
     <div className="App">
-      { user.username?.length === 0 ? 
+    <Homepage />
+    {/* { user.username?.length === 0 ? 
         <div>
-          <h1>Login</h1>
-          <form onChange={e => loginChange(e)} onSubmit={e => loginSubmit(e)}>
-            <input type="text" name="username" placeholder="username" value={loginData.username}  />
-            <input type="text" name="password" placeholder="password" value={loginData.password} />
-            <input type="submit" name="submit"/>
-          </form>
-          
-<button onClick={ clearStorage}>button</button>
-          <h1>Signup</h1>
+         <h1>Login</h1>
+    <form onChange={e => loginChange(e)} onSubmit={e => loginSubmit(e)}>
+      <input type="text" name="username" placeholder="username" value={loginData.username}  />
+      <input type="text" name="password" placeholder="password" value={loginData.password} />
+      <input type="submit" name="submit"/>
+    </form>
+    </div>
+            :
+            <div>
+              <h1>Hi {user.name}</h1>
+              <button onClick={logout}>Logout</button>
+            </div>
+        } */}
+
+{/* <button onClick={ clearStorage}>button</button> */}
+          {/* <h1>Signup</h1>
           <form onSubmit={e => signUpSubmit(e)}>
             <input onChange={e => signUpChange(e)} type="text" name="username" placeholder="username" value={signupData.username} />
             <input onChange={e => signUpChange(e)} type="text" name="name" placeholder="name" value={signupData.name}/>
             <input onChange={e => signUpChange(e)} type="text" name="password" placeholder="password" value={signupData.password} />
             <input type="submit" name="submit" />
-          </form>
+          </form> */}
         </div>
-        :
-        <div>
-          <h1>Hi {user.name}</h1>
-          <button onClick={logout}>Logout</button>
-        </div>
-    }
-    </div>
+
   );
 }
 

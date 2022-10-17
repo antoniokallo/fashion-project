@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clothing_type: MyString
+  brand_id: MyString
+  where_made: MyString
+  image: MyString
+  sus_clothing_id: MyString
+
+two:
+  clothing_type: MyString
+  brand_id: MyString
+  where_made: MyString
+  image: MyString
+  sus_clothing_id: MyString
