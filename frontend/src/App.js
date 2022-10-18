@@ -113,7 +113,7 @@ function App() {
     
     <div className="App">
     <Homepage />
-    {/* { user.username?.length === 0 ? 
+    { user.username?.length === 0 ? 
         <div>
          <h1>Login</h1>
     <form onChange={e => loginChange(e)} onSubmit={e => loginSubmit(e)}>
@@ -127,16 +127,16 @@ function App() {
               <h1>Hi {user.name}</h1>
               <button onClick={logout}>Logout</button>
             </div>
-        } */}
+        }
 
 {/* <button onClick={ clearStorage}>button</button> */}
-          {/* <h1>Signup</h1>
+          <h1>Signup</h1>
           <form onSubmit={e => signUpSubmit(e)}>
             <input onChange={e => signUpChange(e)} type="text" name="username" placeholder="username" value={signupData.username} />
             <input onChange={e => signUpChange(e)} type="text" name="name" placeholder="name" value={signupData.name}/>
             <input onChange={e => signUpChange(e)} type="text" name="password" placeholder="password" value={signupData.password} />
             <input type="submit" name="submit" />
-          </form> */}
+          </form>
         </div>
 
   );
