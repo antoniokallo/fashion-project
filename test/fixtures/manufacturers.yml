@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  storename: MyString
+  name: MyString
   location: MyString
   sustainability: MyString
   image: MyString
 
 two:
-  storename: MyString
+  name: MyString
   location: MyString
   sustainability: MyString
   image: MyString

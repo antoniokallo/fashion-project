@@ -1,7 +1,7 @@
-class CreateSusClothings < ActiveRecord::Migration[7.0]
+class CreateManufacturers < ActiveRecord::Migration[7.0]
   def change
-    create_table :sus_clothings do |t|
-      t.string :storename
+    create_table :manufacturers do |t|
+      t.string :name
       t.string :location
       t.string :sustainability
       t.string :image

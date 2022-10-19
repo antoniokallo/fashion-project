@@ -1,2 +1,0 @@
-class SusClothing < ApplicationRecord
-end
