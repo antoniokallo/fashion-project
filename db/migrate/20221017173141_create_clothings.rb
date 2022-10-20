@@ -6,6 +6,7 @@ class CreateClothings < ActiveRecord::Migration[7.0]
       t.string :image
       t.integer :brand_id
       t.integer :manufacturer_id
+      t.integer :closet_id
 
       t.timestamps
     end

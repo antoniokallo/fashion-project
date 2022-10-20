@@ -1,4 +1,4 @@
 class Closet < ApplicationRecord
-belongs_to :clothing
+has_many :clothing
 belongs_to :user
 end
