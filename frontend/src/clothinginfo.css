@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+
+.clothingitem{
+    font-family: 'Shrikhand';
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+    font-size: 50px;
+}
+
+.clothing{
+       display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+}

@@ -1,5 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
-# belongs_to :closets
+    has_many :user_clothings
+    has_many :clothings, through: :user_clothings
+
 
 end

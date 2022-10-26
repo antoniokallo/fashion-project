@@ -1,46 +1,28 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: %i[ show update destroy ]
-
-    # GET /users
-    def index
-      @users = User.all
-  
-      render json: @users
+  before_action :authorized, only: [:show, :update]
+  def index
+    users = User.all
+    render json: users
+  end
+  def show
+    render json: @current_user
+  end
+  def login #for /login
+    #find by username from body
+    @user = User.find_by(username: params[:username])
+    #check if user exists and password matches password digest
+    if (@user && @user.authenticate(params[:password]))
+        #create token for front end
+        token = JWT.encode({user_id: @user.id}, 'jwt')
+        #pass user instance and token to front end
+        render json: {user: @user, token: token}
     end
-  
-    # GET /users/1
-    def show
-      render json: @user
-    end
-  
-    # LOGIN
-    def login
-        user = User.find_by(username: params[:username]).try(:authenticate, params[:password])
-    
-        if user 
-          token = encode(user.id)
-          
-          render json: {user: user, token: token}
-        else
-          render json: { message: 'wrong'}
-        end
-        # render json: user
-      end
-  
-    # get profile
-    def me
-      token = request.headers['token']
-      user_id =   decode(token)
-      puts user_id
-      user = User.find(user_id)
-      render json: user
-    end
-  
-    # POST /users
-    def signup
-      user = User.create!(username: params[:username],  password: params[:password], name: params[:name])
-      render json: user
-    end
+  end
+  def create #for /signup
+    @user = User.create!(username: params[:username], name: params[:name], password: params[:password])
+    token = JWT.encode({user_id: @user.id}, 'jwt')
+    render json: {user: @user, token: token}
+  end
   
     # PATCH/PUT /users/1
     def update
@@ -58,10 +40,6 @@ class UsersController < ApplicationController
   
     private
       # Use callbacks to share common setup or constraints between actions.
-      def set_user
-        @user = User.find(params[:id])
-        
-      end
   
       # Only allow a list of trusted parameters through.
       def user_params

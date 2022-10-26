@@ -1,6 +1,19 @@
 import React from 'react'
 import './Homepage.css'
-import { useState} from 'react';
+import { useEffect,useState} from 'react';
+import {
+  Form, Image, Message, Segment,
+  Button,
+ Container,
+ Divider,
+ Dropdown,
+ Grid,
+ Header,
+ List,
+ Menu,
+} from 'semantic-ui-react'
+
+
 
 export default function Homepage() {
     const loginBody = {
@@ -20,26 +33,28 @@ export default function Homepage() {
       let [user, setUser] = useState({ username: '' })
     
      /*****auto login******/
-      // useEffect(() => {
-      //   let token = localStorage.getItem('token')
-      //   if(token && !user.username){
-      //     fetch('http://localhost:3000/me', {
-      //       headers: {
-      //         'Authorization': `Bearer ${token}`
-      //       }
-      //     })
-      //     .then(res => res.json())
-      //     .then(data => {
-      //       console.log(data)
-      //       if(data.user){
-      //         setUser(data.user)
-      //       }
-      //     })
-      //   }
-      // }, [])
+      useEffect(() => {
+        let token = localStorage.getItem('token')
+        console.log(token)
+        if(token && !user.username ){
+          fetch('http://localhost:3000/me', {
+            headers: {
+              token:  token,
+              'content-type': 'application/json'
+            }
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            if(data.username){
+              setUser(data.username)
+            }
+          })
+        }
+      }, [])
      /*****logout user******/
       const logout = () => {
-        setUser({username: ''})
+        setUser({username: ""})
         localStorage.removeItem('token')
       }
     
@@ -61,7 +76,7 @@ export default function Homepage() {
         fetch('http://localhost:3000/login', {
           method: 'POST',
           headers: {
-            'content-type': 'application/json'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify(loginData)
         })
@@ -109,30 +124,20 @@ export default function Homepage() {
 
         <div className="App">
         
-           { user.username?.length === 0 ? 
-               <div>
-                <h1>Login</h1>
-           <form onChange={e => loginChange(e)} onSubmit={e => loginSubmit(e)}>
-             <input type="text" name="username" placeholder="username" value={loginData.username}  />
-             <input type="text" name="password" placeholder="password" value={loginData.password} />
-             <input type="submit" name="submit"/>
-           </form>
-           </div>
-                   :
-                   <div>
-                     <h1>Hi {user.name}</h1>
-                     <button onClick={logout}>Logout</button>
-                   </div>
-               }
-       
-                 <h1>Signup</h1>
-                 <form onSubmit={e => signUpSubmit(e)}>
-                   <input onChange={e => signUpChange(e)} type="text" name="username" placeholder="username" value={signupData.username} />
-                   <input onChange={e => signUpChange(e)} type="text" name="name" placeholder="name" value={signupData.name}/>
-                   <input onChange={e => signUpChange(e)} type="text" name="password" placeholder="password" value={signupData.password} />
-                   <input type="submit" name="submit" />
-                 </form>
-            
+        <Container text style={{ marginTop: '7em' }}>
+      <Header as='h1'>Fashion Forward</Header>
+      
+      <h3>A website to see if brands are sustainable or not.</h3>
+      <p>
+        A text container is used for the main container, which is useful for single column layouts.
+      </p>
+
+      <Image src='/images/wireframe/media-paragraph.png' style={{ marginTop: '2em' }} />
+   
+    </Container>
+  
+           
+  
                </div>
        
     )

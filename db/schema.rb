@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_18_184617) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_24_211609) do
   create_table "brands", force: :cascade do |t|
     t.string "brandname"
     t.string "manufacturer"
@@ -22,20 +22,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_18_184617) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "closets", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "clothing_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "clothings", force: :cascade do |t|
     t.string "clothing_type"
     t.string "where_made"
     t.string "image"
     t.integer "brand_id"
     t.integer "manufacturer_id"
-    t.integer "closet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,6 +37,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_18_184617) do
     t.string "location"
     t.string "sustainability"
     t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_clothings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "clothing_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
